@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Request, Response } from "express";
 import userRoutes from "./routes/userRoutes.js";
 import tweetRoutes from "./routes/tweetRoutes.js";
 
@@ -8,7 +8,7 @@ app.use(express.json());
 app.use("/users", userRoutes);
 app.use("/tweets", tweetRoutes);
 
-app.get("/", (req, res) => {
+app.get("/", (req: Request, res: Response) => {
   res.send("Hello World!");
 });
 
