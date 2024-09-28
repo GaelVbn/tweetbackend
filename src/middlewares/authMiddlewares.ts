@@ -11,12 +11,13 @@ export async function authenticateToken(
   req: AuthRequest,
   res: Response,
   next: NextFunction
-) {
+): Promise<void> {
   const authHeader = req.headers["authorization"];
   const jwtToken = authHeader?.split(" ")[1];
 
   if (!jwtToken) {
-    return res.sendStatus(401);
+    res.sendStatus(401);
+    return;
   }
   //decode the tokenjwt token
   try {
