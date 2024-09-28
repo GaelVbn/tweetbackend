@@ -25,7 +25,11 @@ router.post("/", async (req, res) => {
 
 // list tweet
 router.get("/", async (req, res) => {
-  const AllTweet = await prisma.tweet.findMany();
+  const AllTweet = await prisma.tweet.findMany({
+    include: {
+      user: { select: { id: true, name: true, Username: true, image: true } },
+    },
+  });
   res.json(AllTweet);
 });
 
